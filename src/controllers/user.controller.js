@@ -14,7 +14,7 @@ async function createUser (req,res){
         if(doesUserExist){
             return res.sendStatus(409);
         }
-        await usersCollection.insertOne({name,email,password: hash,data:[]});
+        await usersCollection.insertOne({name,email,password: hash});
     } catch (error) {
         console.error(error);
         return res.sendStatus(500);
