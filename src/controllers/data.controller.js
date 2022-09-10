@@ -21,4 +21,10 @@ async function findList(req,res){
     }
 }
 
-export {findList}
+async function createLog (req,res){
+    console.log(req.body);
+    
+    return res.sendStatus(200);
+}
+
+export {findList , createLog}
