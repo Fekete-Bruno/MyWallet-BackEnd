@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.post("/sign-up", createUser);
 
-app.post("/sign-in",createSession);
+app.post("/log-in",createSession);
 
 app.post('income',createLog);
 

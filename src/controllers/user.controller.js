@@ -25,6 +25,7 @@ async function createUser (req,res){
 
 async function createSession(req,res){
     const {email,password} = req.body;
+    const errorMessage = "Invalid e-mail or password";
 
     try {
         const user = await usersCollection.findOne({email});
@@ -38,7 +39,7 @@ async function createSession(req,res){
             });
             return res.send(token);
         } else {
-            return res.sendStatus(401);
+            return res.status(401).send(errorMessage);
         };
 
     } catch (error) {
