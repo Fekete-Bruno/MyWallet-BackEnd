@@ -1,22 +1,17 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-dotenv.config();
+import { createSession, createUser } from "./controllers/user.controller.js";
+import { findList } from "./controllers/data.controller.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post("/sign-up",(req,res)=>{
-    const {name,email,password} = req.body;
-    console.log(name,email,password);
+app.post("/sign-up", createUser);
 
-    res.sendStatus(201);
-});
+app.post("/sign-in",createSession);
 
-app.get("/main", (req,res)=>{
-    console.log('get');
-    res.sendStatus(200);
-});
+app.get('/main',findList);
+
 
 app.listen(5000,()=>{console.log("Listening on port 5000...")});
