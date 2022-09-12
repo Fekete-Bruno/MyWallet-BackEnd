@@ -1,7 +1,7 @@
 import db from "../database/db.js";
 
 
-async function findList(req,res){
+async function findLogs(req,res){
     const { authorization } = req.headers;
     const token = authorization?.replace('Bearer ','');
 
@@ -31,4 +31,4 @@ async function createLog (req,res){
     return res.sendStatus(200);
 }
 
-export {findList , createLog}
+export {findLogs , createLog}

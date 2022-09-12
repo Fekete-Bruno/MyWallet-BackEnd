@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { createSession, createUser } from "./controllers/user.controller.js";
-import { createLog, findList } from "./controllers/data.controller.js";
+import { createLog, findLogs } from "./controllers/logs.controller.js";
 
 const app = express();
 app.use(cors());
@@ -13,6 +13,6 @@ app.post("/log-in",createSession);
 
 app.post('income',createLog);
 
-app.get('/main',findList);
+app.get('/main',findLogs);
 
 app.listen(5000,()=>{console.log("Listening on port 5000...")});
