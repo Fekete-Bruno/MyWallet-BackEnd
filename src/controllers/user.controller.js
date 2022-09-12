@@ -33,8 +33,10 @@ async function createSession(req,res){
         if (user && bcrypt.compareSync(password,user?.password)){
 
             const token = uuid();
+            const timestamp = Date.now();
             db.collection('sessions').insertOne({
                 token,
+                timestamp,
                 userId: user._id
             });
             return res.send(token);
@@ -46,6 +48,16 @@ async function createSession(req,res){
         console.error(error);
         return res.sendStatus(500);
     }
-}   
+}
 
-export { createUser , createSession };
+async function deleteUnactiveSessions(){
+    const oneHour = 1000*3600;
+    try {
+        const date = Date.now();
+        await db.collection('sessions').deleteMany({"timestamp":{$lt:date-oneHour}});
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export { createUser , createSession, deleteUnactiveSessions };

@@ -1,11 +1,15 @@
 import express from "express";
 import cors from "cors";
-import { createSession, createUser } from "./controllers/user.controller.js";
+import { createSession, createUser, deleteUnactiveSessions } from "./controllers/user.controller.js";
 import { createLog, findLogs } from "./controllers/logs.controller.js";
+
+const interval = 10000;
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+setInterval(deleteUnactiveSessions,interval);
 
 app.post("/sign-up", createUser);
 
