@@ -11,9 +11,7 @@ app.post("/sign-up", createUser);
 
 app.post("/log-in",createSession);
 
-app.post('/income',createLog);
-
-app.post('/expense',createLog);
+app.post('/logs',createLog);
 
 app.get('/main',findLogs);
 
